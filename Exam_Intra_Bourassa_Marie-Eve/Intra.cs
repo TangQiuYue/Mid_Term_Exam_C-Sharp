@@ -11,7 +11,7 @@ namespace Exam_Intra_Bourassa_Marie_Eve
         static void Main(string[] args)
 
         {
-            Console.ForegroundColor = ConsoleColor.White;
+         
             login();
 
         }
@@ -36,7 +36,7 @@ namespace Exam_Intra_Bourassa_Marie_Eve
                 {
                     case 1:
                         Console.Clear();
-                        ajouterEtudiant();
+                        addStudent();
                         menu();
                         break;
                     case 2:
@@ -83,25 +83,25 @@ namespace Exam_Intra_Bourassa_Marie_Eve
         {
             double average = 0;
             int count = 1;
-            if (etudiant[0].Id == null)
+            if (student[0].Id == null)
             {
                 Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine("\n\n\n\n****************************La liste est vide ****************************\n");
                 Console.ForegroundColor = ConsoleColor.Blue;
             }
-            for (int i = 0; i < etudiant.Length; i++)
+            for (int i = 0; i < student.Length; i++)
             {
-                if (etudiant[i].Id != null)
+                if (student[i].Id != null)
                 {
-                    Console.WriteLine("\nIdentifiants: " + etudiant[i].Id + "\nNom: " + etudiant[i].Nom + "\nPrenom: : " + etudiant[i].Prenom);
+                    Console.WriteLine("\nIdentifiants: " + student[i].Id + "\nNom: " + student[i].familyName + "\nPrenom: : " + student[i].firstName);
 
-                    for (int j = 0; j < cours.Length; j++)
+                    for (int j = 0; j < course.Length; j++)
                     {
-                        if (cours[j].IdEtud != null)
-                            if (cours[j].IdEtud.Equals(etudiant[i].Id))
+                        if (course[j].studentId != null)
+                            if (course[j].studentId.Equals(student[i].Id))
                             {
-                                if (cours[j].Notes != 0)
-                                    average += cours[j].Notes;
+                                if (course[j].Notes != 0)
+                                    average += course[j].Notes;
                                 count++;
                             }
                     }
@@ -148,14 +148,14 @@ namespace Exam_Intra_Bourassa_Marie_Eve
             Console.WriteLine("Voici la liste des étudiants. \nEntrez l'Identifiant de l'étudiant que vous voulez supprimer.");
             afficherEtudiantsAbb();
             supp = Console.ReadLine();
-            for (int i = 0; i < etudiant.Length; i++)
+            for (int i = 0; i < student.Length; i++)
             {
-                if (supp.Equals(etudiant[i].Id))
+                if (supp.Equals(student[i].Id))
                 {
-                    etudiant[i].Id = null;
-                    etudiant[i].Nom = null;
-                    etudiant[i].Prenom = null;
-                    etudiant[i].NomCours = null;
+                    student[i].Id = null;
+                    student[i].familyName = null;
+                    student[i].firstName = null;
+                    student[i].NomCours = null;
                 }
             }
         }
@@ -175,38 +175,38 @@ namespace Exam_Intra_Bourassa_Marie_Eve
 
         private static void afficherCours()
         {
-            if(cours[0].IdEtud == null)
+            if(course[0].studentId == null)
             {
                 Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine("\n\n\n\n****************************La liste est vide ****************************\n");
                 Console.ForegroundColor = ConsoleColor.Blue;
             }
-            for (int i = 0; i < cours.Length; i++)
+            for (int i = 0; i < course.Length; i++)
             {
-                Console.WriteLine("ID etud: " + cours[i].IdEtud);
+                Console.WriteLine("ID etud: " + course[i].studentId);
             }
         }
 
         private static void afficherEtudiantDet()
         {
-            if (etudiant[0].Id == null)
+            if (student[0].Id == null)
             {
                 Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine("\n\n\n\n****************************La liste est vide ****************************\n");
                 Console.ForegroundColor = ConsoleColor.Blue;
             }
-            for (int i = 0; i < etudiant.Length; i++)
+            for (int i = 0; i < student.Length; i++)
             {
-                if (etudiant[i].Id != null)
-                    Console.WriteLine("\nIdentifiants: " + etudiant[i].Id + "\nNom: " + etudiant[i].Nom + "\nPrenom: : " + etudiant[i].Prenom + "\nNom des cours: ");
+                if (student[i].Id != null)
+                    Console.WriteLine("\nIdentifiants: " + student[i].Id + "\nNom: " + student[i].familyName + "\nPrenom: : " + student[i].firstName + "\nNom des cours: ");
 
-                for (int j = 0; j < cours.Length; j++)
+                for (int j = 0; j < course.Length; j++)
                 {
-                    if (cours[j].IdEtud != null)
-                    if (cours[j].IdEtud.Equals(etudiant[i].Id))
+                    if (course[j].studentId != null)
+                    if (course[j].studentId.Equals(student[i].Id))
                     {
-                        if(cours[j].Nom != null)
-                        Console.WriteLine(cours[j].Nom);
+                        if(course[j].courseName != null)
+                        Console.WriteLine(course[j].courseName);
                     }
 
                     
@@ -216,132 +216,156 @@ namespace Exam_Intra_Bourassa_Marie_Eve
 
         private static void afficherEtudiantsAbb()
         {
-            if (etudiant[0].Id == null)
+            if (student[0].Id == null)
             {
                 Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine("\n\n\n\n****************************La liste est vide ****************************\n");
                 Console.ForegroundColor = ConsoleColor.Blue;
             }
-            for (int i = 0; i < etudiant.Length; i++)
+            for (int i = 0; i < student.Length; i++)
             {
-                if(etudiant[i].Id != null) 
-                Console.WriteLine("\nIdentifiants: " + etudiant[i].Id + "\nNom: " + etudiant[i].Nom + "\nPrenom: : " + etudiant[i].Prenom);
+                if(student[i].Id != null) 
+                Console.WriteLine("\nIdentifiants: " + student[i].Id + "\nNom: " + student[i].familyName + "\nPrenom: : " + student[i].firstName);
             }
         }
 
-        private static void ajouterEtudiant()
+        private static void addStudent()
         {
-            bool goOn = true, keepGoing = true;
-            string choice, choice2;
             string temp;
-            int coursCount = 0;
-            do
-            {
-            etudId:
+
                 coursCount = 0;
-                Console.WriteLine("Entrez l'identifiant de l'Étudiant");
+                Console.WriteLine("Enter the student ID");
                 temp = Console.ReadLine();
-                for (int i = 0; i < etudiant.Length; i++)
+                for (int i = 0; i < student.Length; i++)
                 {
-                    if (temp.Equals(etudiant[i].Id))
+                    if (temp.Equals(student[i].Id))
                     {
-                        Console.WriteLine("Cette identifiant est déja utilisé.");
-                        goto etudId;
+                        Console.WriteLine("This ID is already in use.");
+                        addStudent();
                     }
                 }
-                etudiant[nbrEtudiant].Id = temp;
-                
+                student[studentCount].Id = temp;
 
-            nomEtud:
-                Console.WriteLine("Entrez le nom de l'étudiant");
-                temp = Console.ReadLine();
-                if (temp.Length <= 1)
-                {
-                    Console.WriteLine("Vouz devez entrez le nom de l'étudiant");
-                    goto nomEtud;
-                }
-                etudiant[nbrEtudiant].Nom = temp;
+                studentName();
 
-            prenomEtud:
-                Console.WriteLine("Entrez le prenom de l'étudiant");
-                temp = Console.ReadLine();
-                if (temp.Length <= 1)
-                {
-                    Console.WriteLine("Vouz devez entrez le prenom de l'étudiant");
-                    goto prenomEtud;
-                }
-                etudiant[nbrEtudiant].Prenom = temp;
+                studentFirstName();
+               
+                    course[courseCount].studentId = student[studentCount].Id;
 
-                do {
-                cours[nbrCours].IdEtud = etudiant[nbrEtudiant].Id;
-                nomCours:
-                    Console.WriteLine("Entrez le nom du cours");
-                    temp = Console.ReadLine();
-                    if (temp.Length <= 1)
-                    {
-                        Console.WriteLine("Vous devez entrez le nom du cours");
-                        goto nomCours;
-                    }
-                    cours[nbrCours].Nom = temp;
+                    addClasses();
 
-                    Console.WriteLine("Entrez la note du cours");
-                    try
-                    {
-                        cours[nbrCours].Notes = Double.Parse(Console.ReadLine());
-                    }
-                    catch (Exception e)
-                    {
-                        Console.WriteLine(e.Message);
-                        goto nomCours;
-                    }
-                    coursCount++;
-                    if (coursCount == 4)
-                    {
-                        goto leave;
-                    }
-                    nbrCours++;
+                    courseCount++;
 
-                autreCours:
-                Console.WriteLine("Voulez-vous entrez un autre Cours O / N");
-                choice2 = Console.ReadLine();
-                choice2.ToUpper();
-                if (choice2.Equals("N") || choice2.Equals("n"))
-                    {
-                    keepGoing = false;
-                }
-                else if (choice2.Equals("O") || choice2.Equals("o"))
-                {
-                    keepGoing = true;
-                }
-                else
-                {
-                    Console.WriteLine("Ce choix est invalide.");
-                    goto autreCours;
-                }
-            } while (keepGoing == true);
+                    studentCount++;
 
-                nbrEtudiant++;
-                
+                    exitStudent();
+                    
+                }
+ 
 
-            leave:
-                Console.WriteLine("Voulez-vous entrez un autre Étudiant? O / N");
-                choice = Console.ReadLine();
-                choice.ToUpper();
-                if (choice.Equals("N") || choice.Equals("n"))
-                {
-                    goOn = false;
-                }
-              else  if (choice.Equals("O") || choice.Equals("o"))
-                {
-                    goOn = true;
-                }
-                else
-                {
-                    Console.WriteLine("Ce choix est invalide.");
-                    goto leave;
-                }
-            } while (goOn == true);
+        private static void studentFirstName()
+        {
+            string temp;
+            Console.WriteLine("Please enter the students first name");
+            temp = Console.ReadLine();
+            if (temp.Length <= 1)
+            {
+                Console.WriteLine("You must enter a name");
+                studentFirstName();
+            }
+            student[studentCount].firstName = temp;
         }
+
+        private static void studentName()
+        {
+            string temp;
+            Console.WriteLine("Please enter the students family name");
+            temp = Console.ReadLine();
+            if (temp.Length <= 1)
+            {
+                Console.WriteLine("You must enter a name");
+                studentName();
+            }
+            student[studentCount].familyName = temp;
+        }
+
+        private static void addClasses()
+        {
+
+            string temp;
+            Console.WriteLine("Please enter the course name");
+            temp = Console.ReadLine();
+            if (temp.Length <= 1)
+            {
+                Console.WriteLine("You must enter the course name");
+                addClasses();
+            }
+            course[courseCount].courseName = temp;
+
+            Console.WriteLine("Please enter the students grade");
+            try
+            {
+                course[courseCount].Notes = Double.Parse(Console.ReadLine());
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+                addClasses();
+            }
+            coursCount++;
+
+            if (coursCount == 4)
+            {
+                exitStudent();
+            }
+            addMoreClasses();
+        }
+
+        private static void exitStudent()
+        {
+            string choice;
+            Console.WriteLine("Would you like to add another student? Y / N");
+            choice = Console.ReadLine();
+            choice.ToUpper();
+            if (choice.Equals("N") || choice.Equals("n"))
+            {
+                menu();
+            }
+            else if (choice.Equals("Y") || choice.Equals("y"))
+            {
+                addStudent();
+            }
+            else
+            {
+                Console.WriteLine("This is an invalide choice");
+                exitStudent();
+            }
+          
+        }
+
+        private static void addMoreClasses()
+        {
+            
+            string  choice;
+            Console.WriteLine("Do you want to add a course? Y / N");
+            choice = Console.ReadLine();
+            if (choice.Equals("N") || choice.Equals("n"))
+            {
+                exitStudent();
+            }
+            else if (choice.Equals("Y") || choice.Equals("y"))
+            {
+                addClasses();
+            }
+            else
+            {
+                Console.WriteLine("This is an invalide choice.");
+                addMoreClasses();
+            }
+        } 
+
+                
+        
 
         struct Etudiant
         {
@@ -371,7 +395,7 @@ namespace Exam_Intra_Bourassa_Marie_Eve
                 }
             }
 
-            public string Nom
+            public string familyName
             {
                 get
                 {
@@ -397,7 +421,7 @@ namespace Exam_Intra_Bourassa_Marie_Eve
                 }
             }
 
-            public string Prenom
+            public string firstName
             {
                 get
                 {
@@ -423,7 +447,7 @@ namespace Exam_Intra_Bourassa_Marie_Eve
                     this.notes = notes;
                 }
 
-                public string IdEtud
+                public string studentId
                 {
                     get
                     {
@@ -436,7 +460,7 @@ namespace Exam_Intra_Bourassa_Marie_Eve
                     }
                 }
 
-                public string Nom
+                public string courseName
                 {
                     get
                     {
@@ -463,12 +487,13 @@ namespace Exam_Intra_Bourassa_Marie_Eve
                 }
             }
         
-        static Etudiant[] etudiant = new Etudiant[20];
-        static int nbrEtudiant = 0;
+        static Etudiant[] student = new Etudiant[20];
+        static int studentCount = 0;
 
-        static Cours[] cours = new Cours[20];
-        static int nbrCours = 0;
+        static Cours[] course = new Cours[20];
+        static int courseCount = 0;
         static int count = 0;
+        static int coursCount = 0;
     }
 
 }
