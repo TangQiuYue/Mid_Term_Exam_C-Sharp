@@ -22,14 +22,14 @@ namespace Exam_Intra_Bourassa_Marie_Eve
             try
             {
                 Console.ForegroundColor = ConsoleColor.Blue;
-                Console.WriteLine("\n***** GESTION DU COLLEGE DE ROSE *****");
-                Console.WriteLine("Que voulez vous faire aujourdhi? " +
-                    "\n \n 1 - Ajouter un nouvel étudiant" +
-                    "\n 2 - Lister les étudiants format abrégé" +
-                    "\n 3 - Lister les étudiants format détaillé" +
-                    "\n 4 - Lister les étudiants avec leurs moyennes" +
-                    "\n 5 - Supprimer un étudiant" +
-                    "\n 6 - Quitter l'application");
+                Console.WriteLine("\n***** STUDENT AND GRADE MANAGEMENT TOOL *****");
+                Console.WriteLine("What would you like to do today? " +
+                    "\n \n 1 - Add a new Student" +
+                    "\n 2 - Show students in short format" +
+                    "\n 3 - Show students in long format" +
+                    "\n 4 - List students with their average" +
+                    "\n 5 - Remove a student" +
+                    "\n 6 - Leave this management tool");
                 choix = int.Parse(Console.ReadLine());
 
                 switch (choix)
@@ -41,32 +41,32 @@ namespace Exam_Intra_Bourassa_Marie_Eve
                         break;
                     case 2:
                         Console.Clear();
-                        afficherEtudiantsAbb();
+                        listStudentsShortFormat();
                         menu();
                         break;
                     case 3:
                         Console.Clear();
-                        afficherEtudiantDet();
+                        listStudentsDetailedFormat();
                         menu();
                         break;
                     case 4:
                         Console.Clear();
-                        afficherEtudiantMoyenne();
+                        listStudentsAndAverage();
                         menu();
                         break;
                     case 5:
                         Console.Clear();
-                        supprimerEtudiant();
+                        removeStudent();
                         menu();
                         break;
                     case 6:
                         Console.Clear();
-                        quitterAppli();
+                        leaveApp();
                         menu();
                         break;
                     default:
                         Console.Clear();
-                        Console.WriteLine("Votre choix est invalide, Séléctioner un option de 1-6");
+                        Console.WriteLine("Your choice is invalide. Please select options 1 through 6");
                         menu();
                         break;
                 }
@@ -79,33 +79,33 @@ namespace Exam_Intra_Bourassa_Marie_Eve
             }
         }
 
-        private static void afficherEtudiantMoyenne()
+        private static void listStudentsAndAverage()
         {
             double average = 0;
             int count = 1;
             if (student[0].Id == null)
             {
                 Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine("\n\n\n\n****************************La liste est vide ****************************\n");
+                Console.WriteLine("\n\n\n\n****************************The list is empty ****************************\n");
                 Console.ForegroundColor = ConsoleColor.Blue;
             }
             for (int i = 0; i < student.Length; i++)
             {
                 if (student[i].Id != null)
                 {
-                    Console.WriteLine("\nIdentifiants: " + student[i].Id + "\nNom: " + student[i].familyName + "\nPrenom: : " + student[i].firstName);
+                    Console.WriteLine("\nID: " + student[i].Id + "\nLast Name: " + student[i].FamilyName + "\nFirst Name : " + student[i].FirstName);
 
                     for (int j = 0; j < course.Length; j++)
                     {
                         if (course[j].studentId != null)
                             if (course[j].studentId.Equals(student[i].Id))
                             {
-                                if (course[j].Notes != 0)
-                                    average += course[j].Notes;
+                                if (course[j].Grades != 0)
+                                    average += course[j].Grades;
                                 count++;
                             }
                     }
-                    Console.WriteLine("Moyenne: " + average / count);
+                    Console.WriteLine("Average : " + average / count);
                 }
             }
            
@@ -142,63 +142,54 @@ namespace Exam_Intra_Bourassa_Marie_Eve
             menu();
         }
 
-        private static void supprimerEtudiant()
+        private static void removeStudent()
         {
             string supp;
-            Console.WriteLine("Voici la liste des étudiants. \nEntrez l'Identifiant de l'étudiant que vous voulez supprimer.");
-            afficherEtudiantsAbb();
+            Console.WriteLine("Here is the list of students \nPlease enter the ID of the student you would like to remove.");
+            listStudentsShortFormat();
             supp = Console.ReadLine();
             for (int i = 0; i < student.Length; i++)
             {
                 if (supp.Equals(student[i].Id))
                 {
                     student[i].Id = null;
-                    student[i].familyName = null;
-                    student[i].firstName = null;
-                    student[i].NomCours = null;
+                    student[i].FamilyName = null;
+                    student[i].FirstName = null;
+                    student[i].CourseName = null;
+                }
+                else
+                {
+                    Console.WriteLine("Invalide ID.");
+                    menu();
                 }
             }
         }
 
-        private static void quitterAppli()
+        private static void leaveApp()
         {
             string read;
 
-            Console.WriteLine("Voulez-vous vraimenet quitter? O/N");
+            Console.WriteLine("Do you really want to leave? Y/N");
             read = Console.ReadLine();
             read.ToUpper();
-            if (read.Equals("O") || read.Equals("o"))
+            if (read.Equals("Y") || read.Equals("y"))
             {
                 Environment.Exit(0);
             }
         }
 
-        private static void afficherCours()
-        {
-            if(course[0].studentId == null)
-            {
-                Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine("\n\n\n\n****************************La liste est vide ****************************\n");
-                Console.ForegroundColor = ConsoleColor.Blue;
-            }
-            for (int i = 0; i < course.Length; i++)
-            {
-                Console.WriteLine("ID etud: " + course[i].studentId);
-            }
-        }
-
-        private static void afficherEtudiantDet()
+        private static void listStudentsDetailedFormat()
         {
             if (student[0].Id == null)
             {
                 Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine("\n\n\n\n****************************La liste est vide ****************************\n");
+                Console.WriteLine("\n\n\n\n****************************The list is empty ****************************\n");
                 Console.ForegroundColor = ConsoleColor.Blue;
             }
             for (int i = 0; i < student.Length; i++)
             {
                 if (student[i].Id != null)
-                    Console.WriteLine("\nIdentifiants: " + student[i].Id + "\nNom: " + student[i].familyName + "\nPrenom: : " + student[i].firstName + "\nNom des cours: ");
+                    Console.WriteLine("\nID: " + student[i].Id + "\nLast Name : " + student[i].FamilyName + "\nFirst Name: : " + student[i].FirstName + "\nCourses : ");
 
                 for (int j = 0; j < course.Length; j++)
                 {
@@ -214,18 +205,18 @@ namespace Exam_Intra_Bourassa_Marie_Eve
             }
         }
 
-        private static void afficherEtudiantsAbb()
+        private static void listStudentsShortFormat()
         {
             if (student[0].Id == null)
             {
                 Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine("\n\n\n\n****************************La liste est vide ****************************\n");
+                Console.WriteLine("\n\n\n\n****************************The list is empty ****************************\n");
                 Console.ForegroundColor = ConsoleColor.Blue;
             }
             for (int i = 0; i < student.Length; i++)
             {
                 if(student[i].Id != null) 
-                Console.WriteLine("\nIdentifiants: " + student[i].Id + "\nNom: " + student[i].familyName + "\nPrenom: : " + student[i].firstName);
+                Console.WriteLine("\nID: " + student[i].Id + "\nLast Name: " + student[i].FamilyName + "\nFirst Name: : " + student[i].FirstName);
             }
         }
 
@@ -273,7 +264,7 @@ namespace Exam_Intra_Bourassa_Marie_Eve
                 Console.WriteLine("You must enter a name");
                 studentFirstName();
             }
-            student[studentCount].firstName = temp;
+            student[studentCount].FirstName = temp;
         }
 
         private static void studentName()
@@ -286,7 +277,7 @@ namespace Exam_Intra_Bourassa_Marie_Eve
                 Console.WriteLine("You must enter a name");
                 studentName();
             }
-            student[studentCount].familyName = temp;
+            student[studentCount].FamilyName = temp;
         }
 
         private static void addClasses()
@@ -305,7 +296,7 @@ namespace Exam_Intra_Bourassa_Marie_Eve
             Console.WriteLine("Please enter the students grade");
             try
             {
-                course[courseCount].Notes = Double.Parse(Console.ReadLine());
+                course[courseCount].Grades = Double.Parse(Console.ReadLine());
             }
             catch (Exception e)
             {
@@ -395,7 +386,7 @@ namespace Exam_Intra_Bourassa_Marie_Eve
                 }
             }
 
-            public string familyName
+            public string FamilyName
             {
                 get
                 {
@@ -408,7 +399,7 @@ namespace Exam_Intra_Bourassa_Marie_Eve
                 }
             }
 
-            public string NomCours
+            public string CourseName
             {
                 get
                 {
@@ -421,7 +412,7 @@ namespace Exam_Intra_Bourassa_Marie_Eve
                 }
             }
 
-            public string firstName
+            public string FirstName
             {
                 get
                 {
@@ -473,7 +464,7 @@ namespace Exam_Intra_Bourassa_Marie_Eve
                     }
                 }
 
-                public double Notes
+                public double Grades
                 {
                     get
                     {
