@@ -1,0 +1,6 @@
+C:\Users\TQY_06\Desktop\TECHNIQUES DE RÉALISATION D'INTERFACES UTILISATEUR\Laboratoire\Exam_Intra_Bourassa_Marie-Eve\Exam_Intra_Bourassa_Marie-Eve\bin\Debug\Exam_Intra_Bourassa_Marie-Eve.exe.config
+C:\Users\TQY_06\Desktop\TECHNIQUES DE RÉALISATION D'INTERFACES UTILISATEUR\Laboratoire\Exam_Intra_Bourassa_Marie-Eve\Exam_Intra_Bourassa_Marie-Eve\bin\Debug\Exam_Intra_Bourassa_Marie-Eve.exe
+C:\Users\TQY_06\Desktop\TECHNIQUES DE RÉALISATION D'INTERFACES UTILISATEUR\Laboratoire\Exam_Intra_Bourassa_Marie-Eve\Exam_Intra_Bourassa_Marie-Eve\bin\Debug\Exam_Intra_Bourassa_Marie-Eve.pdb
+C:\Users\TQY_06\Desktop\TECHNIQUES DE RÉALISATION D'INTERFACES UTILISATEUR\Laboratoire\Exam_Intra_Bourassa_Marie-Eve\Exam_Intra_Bourassa_Marie-Eve\obj\Debug\Exam_Intra_Bourassa_Marie-Eve.csprojResolveAssemblyReference.cache
+C:\Users\TQY_06\Desktop\TECHNIQUES DE RÉALISATION D'INTERFACES UTILISATEUR\Laboratoire\Exam_Intra_Bourassa_Marie-Eve\Exam_Intra_Bourassa_Marie-Eve\obj\Debug\Exam_Intra_Bourassa_Marie-Eve.exe
+C:\Users\TQY_06\Desktop\TECHNIQUES DE RÉALISATION D'INTERFACES UTILISATEUR\Laboratoire\Exam_Intra_Bourassa_Marie-Eve\Exam_Intra_Bourassa_Marie-Eve\obj\Debug\Exam_Intra_Bourassa_Marie-Eve.pdb
