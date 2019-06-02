@@ -31,51 +31,43 @@ namespace Exam_Intra_Bourassa_Marie_Eve
                     "\n 5 - Remove a student" +
                     "\n 6 - Leave this management tool");
                 choix = int.Parse(Console.ReadLine());
-
+                Console.Clear();
                 switch (choix)
                 {
                     case 1:
-                        Console.Clear();
                         addStudent();
-                        menu();
+                        returnToMenu("");
                         break;
                     case 2:
-                        Console.Clear();
                         listStudentsShortFormat();
-                        menu();
+                        returnToMenu("");
                         break;
                     case 3:
-                        Console.Clear();
                         listStudentsDetailedFormat();
-                        menu();
+                        returnToMenu("");
                         break;
                     case 4:
-                        Console.Clear();
                         listStudentsAndAverage();
-                        menu();
+                        returnToMenu("");
                         break;
                     case 5:
-                        Console.Clear();
                         removeStudent();
-                        menu();
+                        returnToMenu("");
                         break;
                     case 6:
-                        Console.Clear();
                         leaveApp();
-                        menu();
+                        returnToMenu("");
                         break;
                     default:
-                        Console.Clear();
                         Console.WriteLine("Your choice is invalide. Please select options 1 through 6");
-                        menu();
+                        returnToMenu("");
                         break;
                 }
             } catch(Exception e)
             {
                 Console.WriteLine(e.Message);
                 Console.ReadKey();
-                Console.Clear();
-                menu();
+                returnToMenu("");
             }
         }
 
@@ -97,13 +89,10 @@ namespace Exam_Intra_Bourassa_Marie_Eve
 
                     for (int j = 0; j < course.Length; j++)
                     {
-                        if (course[j].studentId != null)
-                            if (course[j].studentId.Equals(student[i].Id))
-                            {
-                                if (course[j].Grades != 0)
+                        if (course[j].studentId != null && course[j].studentId.Equals(student[i].Id) && course[j].Grades != 0)
                                     average += course[j].Grades;
                                 count++;
-                            }
+                            
                     }
                     Console.WriteLine("Average : " + average / count);
                 }
@@ -119,28 +108,43 @@ namespace Exam_Intra_Bourassa_Marie_Eve
             if (count == 3)
             {
                 Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine("Veuillez contacter la direction. \n\n\nAurevoir.");
+                Console.WriteLine("Please contact the administration. \n\n\nGoodBye!.");
                 Console.ReadKey();
                 Environment.Exit(1);
             }
 
-            Console.WriteLine("Bienvenue au System de Gestion du College de Rose");
-            Console.WriteLine("\nEntrez votre nom d'utilisateur: ");
+            Console.WriteLine("**********STUDENT AND GRADE MANAGEMENT TOOL***************");
+            Console.WriteLine("\nEnter your username ");
             username = Console.ReadLine();
 
-            Console.WriteLine("Entrez votre mot de passe: ");
+            Console.WriteLine("Enter your password: ");
             password = Console.ReadLine();
 
             if (!username.Equals(nomUtil) || !password.Equals(mtp))
             {
-                Console.WriteLine("Je ne reconnais pas cette informations.");
+                Console.WriteLine("I don't recognise this information.");
                 count++;
                 login();
             }
 
-            Console.Clear();
-            menu();
+            returnToMenu("");
         }
+        private static void returnToMenu(string message)
+        {
+
+            if (message.Length > 0)
+            {
+                Console.WriteLine(message);
+                menu();
+            }
+            else
+            {
+                Console.Clear();
+                menu();
+            }
+
+        }
+
 
         private static void removeStudent()
         {
@@ -159,8 +163,7 @@ namespace Exam_Intra_Bourassa_Marie_Eve
                 }
                 else
                 {
-                    Console.WriteLine("Invalide ID.");
-                    menu();
+                    returnToMenu("Invalide ID");
                 }
             }
         }
